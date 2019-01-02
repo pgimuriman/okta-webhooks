@@ -1,0 +1,71 @@
+{
+	"events": [{
+		"uuid": "5163ac8e-7229-4e1f-a462-ba08e94bab34",
+		"published": "2018-12-17T15:13:57.707Z",
+		"eventType": "user.session.start",
+		"version": "0",
+		"displayMessage": "User login to Okta",
+		"severity": "INFO",
+		"client": {
+			"userAgent": {
+				"rawUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:63.0) Gecko/20100101 Firefox/63.0",
+				"os": "Mac OS X",
+				"browser": "FIREFOX"
+			},
+			"zone": "null",
+			"device": "Computer",
+			"ipAddress": "24.194.167.158",
+			"geographicalContext": {
+				"city": "Rensselaer",
+				"state": "New York",
+				"country": "United States",
+				"postalCode": "12144",
+				"geolocation": {
+					"lat": 42.6359,
+					"lon": -73.7219
+				}
+			},
+			"ipChain": [{
+				"ip": "24.194.167.158",
+				"geographicalContext": {
+					"city": "Rensselaer",
+					"state": "New York",
+					"country": "United States",
+					"postalCode": "12144",
+					"geolocation": {
+						"lat": 42.6359,
+						"lon": -73.7219
+					}
+				},
+				"version": "V4"
+			}]
+		},
+		"actor": {
+			"id": "00uhiyvggsRu68cHR0h7",
+			"type": "User",
+			"alternateId": "tom.smith@okta.com",
+			"displayName": "tom smith"
+		},
+		"outcome": {
+			"result": "SUCCESS"
+		},
+		"transaction": {
+			"type": "WEB",
+			"id": "XBe9NYoLbdTFKHHZnEUMNAAACz8",
+			"detail": {}
+		},
+		"debugContext": {
+			"debugData": {
+				"requestId": "XBe9NYoLbdTFKHHZnEUMNAAACz8",
+				"requestUri": "/api/v1/authn",
+				"url": "/api/v1/authn?"
+			}
+		},
+		"legacyEventType": "core.user_auth.login_success",
+		"authenticationContext": {
+			"authenticationStep": 0,
+			"externalSessionId": "102QgyYjzmjR-e4zBOWcBJKVg"
+		},
+		"securityContext": {}
+	}]
+}
