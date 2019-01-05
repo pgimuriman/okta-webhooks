@@ -1,0 +1,103 @@
+
+/*
+Input variable name = body
+
+Input variable Value = {$.steps.trigger.body}
+
+*/
+
+
+// You can reference the input variables using input.NAME
+exports.step = function(input) {
+  console.log("the body is: " + input.body)
+
+  return input.body;
+};
+
+/*
+Body of inbound POST:
+
+{
+    "events": [
+        {
+            "uuid": "e9a0d1de-b15a-4c3a-9b6a-52a73d083309",
+            "published": "2018-12-31T16:50:07.198Z",
+            "eventType": "user.lifecycle.create",
+            "version": "0",
+            "displayMessage": "Create okta user",
+            "severity": "INFO",
+            "client": {
+                "userAgent": {
+                    "rawUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:64.0) Gecko/20100101 Firefox/64.0",
+                    "os": "Mac OS X",
+                    "browser": "FIREFOX"
+                },
+                "zone": "null",
+                "device": "Computer",
+                "ipAddress": "24.194.167.158",
+                "geographicalContext": {
+                    "city": "Rensselaer",
+                    "state": "New York",
+                    "country": "United States",
+                    "postalCode": "12144",
+                    "geolocation": {
+                        "lat": 42.6359,
+                        "lon": -73.7219
+                    }
+                },
+                "ipChain": [
+                    {
+                        "ip": "24.194.167.158",
+                        "geographicalContext": {
+                            "city": "Rensselaer",
+                            "state": "New York",
+                            "country": "United States",
+                            "postalCode": "12144",
+                            "geolocation": {
+                                "lat": 42.6359,
+                                "lon": -73.7219
+                            }
+                        },
+                        "version": "V4"
+                    }
+                ]
+            },
+            "actor": {
+                "id": "00uhiyvggsRu68cHR0h7",
+                "type": "User",
+                "alternateId": "tom.smith@okta.com",
+                "displayName": "tom smith"
+            },
+            "outcome": {
+                "result": "SUCCESS"
+            },
+            "target": [
+                {
+                    "id": "00uiozzeig8AM7FqT0h7",
+                    "type": "User",
+                    "alternateId": "david.bowie@oktademo.com",
+                    "displayName": "david bowie"
+                }
+            ],
+            "transaction": {
+                "type": "WEB",
+                "id": "XCpIv6dc9-2Slk5md01pEwAAACs",
+                "detail": {}
+            },
+            "debugContext": {
+                "debugData": {
+                    "requestId": "XCpIv6dc9-2Slk5md01pEwAAACs",
+                    "requestUri": "/api/v1/users",
+                    "url": "/api/v1/users?activate=true"
+                }
+            },
+            "legacyEventType": "core.user.config.user_creation.success",
+            "authenticationContext": {
+                "authenticationStep": 0,
+                "externalSessionId": "1021EPW25ntTuWGTXQgFK72pw"
+            },
+            "securityContext": {}
+        }
+    ]
+}
+*/

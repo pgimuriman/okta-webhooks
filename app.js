@@ -30,6 +30,15 @@ app.listen(port, function () {
 
 //////////////////////////////////////////////////
 
+app.post('/post', function (req, res) {
+	console.dir(req.body)
+
+	console.dir(JSON.stringify(req.body))
+
+	res.json(req.body)
+
+})
+
 app.post('/webhook', function (req, res) {
 	console.dir(req.body)
 
