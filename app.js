@@ -31,8 +31,10 @@ app.listen(port, function () {
 //////////////////////////////////////////////////
 
 app.post('/post', function (req, res) {
+	console.log("this is the raw body object: ")
 	console.dir(req.body)
 
+	console.log("this is the json version of the body object: ")
 	console.dir(JSON.stringify(req.body))
 
 	res.json(req.body)
