@@ -17,7 +17,7 @@ const request = require("request")
 // SET UP WEB SERVER
 const app = express()
 
-var port = process.env.PORT
+var port = process.env.PORT || 3020
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json({limit: '50mb', type: 'application/json'}));
