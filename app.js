@@ -1,16 +1,16 @@
-// Okta + TrustedKey integration
+// Okta Event Hooks utilities
 
 ////////////////////////////////////////////////////
 
 require('dotenv').config()
 
-const bodyParser = require("body-parser")
+const bodyParser = require('body-parser')
 
 const express = require('express')
 
 const fs = require('fs')
 
-const request = require("request")
+const request = require('request')
 
 ///////////////////////////////////////////////////
 
@@ -30,18 +30,7 @@ app.listen(port, function () {
 
 //////////////////////////////////////////////////
 
-app.post('/post', function (req, res) {
-	console.log("this is the raw body object: ")
-	console.dir(req.body)
-
-	console.log("this is the json version of the body object: ")
-	console.dir(JSON.stringify(req.body))
-
-	res.json(req.body)
-
-})
-
-app.post('/webhook', function (req, res) {
+app.post('/event_hooks', function (req, res) {
 	console.dir(req.body)
 
 	console.dir(JSON.stringify(req.body))
@@ -50,8 +39,8 @@ app.post('/webhook', function (req, res) {
 
 })
 
-app.get('/webhook', function (req, res) {
-	console.log("received a request from okta")
+app.get('/event_hooks', function (req, res) {
+	console.log("received a verification request from okta")
 
 	console.log("the header is: " + req.header("X-Okta-Verification-Token"))
 
