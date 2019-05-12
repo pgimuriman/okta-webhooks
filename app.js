@@ -82,7 +82,7 @@ function test_request_with_routing(hook_obj) {
 
 	var arr = source.split(".com/")
 
-	const okta_org = arr[0] . ".com"
+	const okta_org = arr[0] + ".com"
 
 	console.log("the Okta org is: " + okta_org)
 
