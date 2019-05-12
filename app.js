@@ -74,15 +74,12 @@ function get_okta_org(hook_obj, callback) {
 
 	const okta_org = arr[0] + ".com"
 
-	console.log("the Okta org is: " + okta_org)
-
 	return callback(null, okta_org)
 }
 
 function handle_event(okta_org, event) {
 
 	if (okta_org === process.env.OKTA_ORG_01) {
-
 		if (event.eventType === "user.session.start") {
 			console.log("the event type is: " + event.eventType)
 			console.log("and the okta org is: " + okta_org)
