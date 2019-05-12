@@ -65,7 +65,7 @@ app.post('/event_hooks', function (req, res) {
 	test_request_with_routing(hook_obj)
 
 	// stub function to handle routing based on Okta org and type of event
-	route_request(hook_obj)
+	// route_request(hook_obj)
 })
 
 function test_request() {
@@ -78,13 +78,11 @@ function test_request_with_payload(hook_obj) {
 
 function test_request_with_routing(hook_obj) {
 
-	const source = hook_obj.source
+	get_okta_org(hook_obj, function(err, okta_org) {
+		console.log("in the parent function the okta org is: " + okta_org)
 
-	var arr = source.split(".com/")
+	})
 
-	const okta_org = arr[0] + ".com"
-
-	console.log("the Okta org is: " + okta_org)
 
 	// "source":"https://dev-443137.okta.com/api/v1/eventHooks/whokycl89tUFGPMXA356"
 
@@ -95,4 +93,16 @@ function test_request_with_routing(hook_obj) {
 	// request.post('http://service.com/upload', {form:{key:'value'}})
 
 
+}
+
+function get_okta_org(hook_obj, callback) {
+	const source = hook_obj.source
+
+	var arr = source.split(".com/")
+
+	const okta_org = arr[0] + ".com"
+
+	console.log("the Okta org is: " + okta_org)
+
+	return callback(null, okta_org)
 }
