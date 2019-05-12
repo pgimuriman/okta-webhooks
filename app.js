@@ -53,47 +53,19 @@ app.post('/event_hooks', function (req, res) {
 
 	console.dir(JSON.stringify(hook_obj))
 
-	// comment / uncomment these as you progress thru testing
-
 	// sends a POST to HOOK_TEST_URI
 	test_request()
 
 	// sends a POST to HOOK_TEST_URI with the hook payload
 	test_request_with_payload(hook_obj)
 
-	// routes to HOOK_TEST_URI based on Okta org and type of event
-	test_request_with_routing(hook_obj)
+	// parses okta org and events arr from hook and passes them to 
+	// the handle_request function
+	route_request(hook_obj)
 
-	// stub function to handle routing based on Okta org and type of event
-	// route_request(hook_obj)
+	res.sendStatus(200)
+
 })
-
-function test_request() {
-	request.post(process.env.HOOK_TEST_URI, {form:{msg:'got an event hook from Okta!'}})
-}
-
-function test_request_with_payload(hook_obj) {
-	request.post(process.env.HOOK_TEST_URI, {form: hook_obj})
-}
-
-function test_request_with_routing(hook_obj) {
-
-	get_okta_org(hook_obj, function(err, okta_org) {
-		console.log("in the parent function the okta org is: " + okta_org)
-
-	})
-
-
-	// "source":"https://dev-443137.okta.com/api/v1/eventHooks/whokycl89tUFGPMXA356"
-
-	// request.post(process.env.HOOK_DEST_01, {form: hook_obj})
-
-	return
-
-	// request.post('http://service.com/upload', {form:{key:'value'}})
-
-
-}
 
 function get_okta_org(hook_obj, callback) {
 	const source = hook_obj.source
@@ -105,4 +77,33 @@ function get_okta_org(hook_obj, callback) {
 	console.log("the Okta org is: " + okta_org)
 
 	return callback(null, okta_org)
+}
+
+function handle_event(okta_org, event) {
+
+	if (okta_org === process.env.OKTA_ORG_01) {
+
+		if (event.eventType === "user.session.start") {
+			console.log("the event type is: " + event.eventType)
+			console.log("and the okta org is: " + okta_org)
+		}
+	}
+}
+
+function route_request(hook_obj) {
+
+	get_okta_org(hook_obj, function(err, okta_org) {
+
+		for (var i = 0; i < .length; i++) {
+			handle_event(okta_org, hook_obj.data.events)
+		}
+	})
+}
+
+function test_request() {
+	request.post(process.env.HOOK_TEST_URI, {form:{msg:'got an event hook from Okta!'}})
+}
+
+function test_request_with_payload(hook_obj) {
+	request.post(process.env.HOOK_TEST_URI, {form: hook_obj})
 }
