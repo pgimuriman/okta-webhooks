@@ -94,8 +94,8 @@ function route_request(hook_obj) {
 
 	get_okta_org(hook_obj, function(err, okta_org) {
 
-		for (var i = 0; i < .length; i++) {
-			handle_event(okta_org, hook_obj.data.events)
+		for (var i = 0; i < hook_obj.data.events.length; i++) {
+			handle_event(okta_org, hook_obj.data.events[i])
 		}
 	})
 }
