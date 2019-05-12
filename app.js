@@ -42,11 +42,11 @@ app.post('/event_hooks', function (req, res) {
 app.get('/event_hooks', function (req, res) {
 	console.log("received a verification request from okta")
 
-	console.log("the header is: " + req.header("X-Okta-Verification-Token"))
+	console.log("the header is: " + req.header("X-Okta-Verification-Challenge"))
 
-	var jsonToken = {}
-	jsonToken["verificationToken"] = req.header("X-Okta-Verification-Token")
+	var response_obj = {}
+	response_obj["verification"] = req.header("X-Okta-Verification-Challenge")
 
-	res.json(jsonToken)
+	res.json(response_obj)
 
 })
