@@ -48,26 +48,47 @@ app.get('/event_hooks', function (req, res) {
 
 // Receive an event hook
 app.post('/event_hooks', function (req, res) {
-	console.dir(req.body)
 
-	console.dir(JSON.stringify(req.body))
+	const hook_obj = req.body
 
-	route_request(req.body)
+	console.dir(JSON.stringify(hook_obj))
 
-	// res.json(req.body)
+	// comment / uncomment these as you progress thru testing
 
+	// sends a POST to HOOK_TEST_URI
+	test_request()
+
+	// sends a POST to HOOK_TEST_URI with the hook payload
+	test_request_with_payload(hook_obj)
+
+	// routes to HOOK_TEST_URI based on Okta org and type of event
+	test_request_with_routing(hook_obj)
+
+	// stub function to handle routing based on Okta org and type of event
+	route_request(hook_obj)
 })
 
+function test_request() {
+	request.post(process.env.HOOK_TEST_URI, {form:{msg:'got an event hook from Okta!'}})
+}
 
+function test_request_with_payload(hook_obj) {
+	request.post(process.env.HOOK_TEST_URI, {form: hook_obj})
+}
 
-function route_request(hook_obj) {
+function test_request_with_routing(hook_obj) {
 
-	// const url = "https://webhook.site/8a1c25d1-2a62-4864-8a02-bf5c74d72dc4"
+	const source = hook_obj.source
 
-	// request.post(process.env.HOOK_DEST_01, {form:{msg:'got an event hook from Okta!'}})
+	var arr = source.split(".com/")
 
+	const okta_org = arr[0] . ".com"
 
-	request.post(process.env.HOOK_DEST_01, {form: hook_obj})
+	console.log("the Okta org is: " + okta_org)
+
+	// "source":"https://dev-443137.okta.com/api/v1/eventHooks/whokycl89tUFGPMXA356"
+
+	// request.post(process.env.HOOK_DEST_01, {form: hook_obj})
 
 	return
 
