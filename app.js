@@ -60,7 +60,7 @@ function route_request(hook_obj) {
 
 	// const url = "https://webhook.site/8a1c25d1-2a62-4864-8a02-bf5c74d72dc4"
 
-	request.post(HOOK_DEST_01, {form:{msg:'got an event hook from Okta!'}})
+	request.post(process.env.HOOK_DEST_01, {form:{msg:'got an event hook from Okta!'}})
 
 	return
 
